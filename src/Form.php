@@ -58,31 +58,29 @@ abstract class Form extends F
         return B::hidden()->attr('name', '_token')->value(csrf_token());
     }
 
-    public function fake()
+    public function fake($group = true)
     {
-        $group = [];
+        $fields = [];
 
         foreach (self::$fake as $fake) {
-            $field = B::addClass('required')->style('display: none');
-
             if (strstr($fake, 'email')) {
-                $field->email();
+                $field = B::email();
             } else {
-                $field->text();
+                $field = B::text();
             }
 
-            $group[$fake] = $field;
+            $fields[$fake] = $field->addClass('required')->style('display: none');
         }
 
-        return $group;
+        return $group ? B::group($fields) : $fields;
     }
 
     public function tokenAndFake()
     {
-        $group = self::fake();
+        $group = self::fake(false);
         $group['_token'] = self::token();
 
-        return $group;
+        return B::group($group);
     }
 
     public function getFake()
