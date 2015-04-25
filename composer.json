@@ -1,0 +1,22 @@
+{
+    "name": "laravel/form-manager",
+    "keywords": ["laravel", "forms"],
+    "description": "A package to join Laravel with Form Manager",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lito",
+            "email": "lito@eordes.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "form-manager/form-manager": "4.3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravel\\FormManager\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
