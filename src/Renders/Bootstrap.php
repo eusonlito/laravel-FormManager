@@ -19,10 +19,11 @@ class Bootstrap extends Render
 
         $label = $this->label($input);
 
-        return '<div class="checkbox-inline form-group">'
+        return '<div class="form-group">'
+            .'<div class="checkbox-inline">'
             .'<label>'
             .$input->input.($label ?: $input->attr('placeholder'))
-            .'</label></div>';
+            .'</label></div></div>';
     }
 
     public function file($input)
