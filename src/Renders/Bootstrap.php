@@ -32,14 +32,14 @@ class Bootstrap extends Render
 
         $this->visualRequired($input);
 
-        if (!($value = $input->data('value'))) {
+        if (!($value = $input->val())) {
             return '<div class="form-group">'.$input.'</div>';
         }
 
         $html = $this->label($input).'<div class="input-group form-group">'.$input->input;
 
         if (!strstr($value, '?')) {
-            $value = url('storage/resources/'.$value);
+            $value = asset('storage/resources/'.$value);
         }
 
         return $html.'<span class="input-group-btn">'
