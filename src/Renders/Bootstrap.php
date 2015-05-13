@@ -1,5 +1,4 @@
 <?php
-
 namespace Laravel\FormManager\Renders;
 
 class Bootstrap extends Render

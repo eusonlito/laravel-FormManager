@@ -1,10 +1,15 @@
 <?php
-
 namespace Laravel\FormManager;
 
+use ReflectionClass;
+
 use Input;
+
 use FormManager\Containers\Form as F;
 use FormManager\Builder as B;
+
+use FormManager\Containers\Collection;
+use FormManager\Containers\Group;
 
 abstract class Form extends F
 {
@@ -14,10 +19,17 @@ abstract class Form extends F
     {
         $render = Renders\Render::get($render)->setVisualRequired(true);
 
-        if ($input) {
-            $input->render($render);
-        } else {
-            foreach ($this as $input) {
+        return $this->applyRender($input ?: $this, $render);
+    }
+
+    private function applyRender($inputs, $render)
+    {
+        foreach ($inputs as $input) {
+            if ($input instanceof Collection) {
+                $this->applyRender($input->template, $render);
+            } elseif ($input instanceof Group) {
+                $this->applyRender($input, $render);
+            } else {
                 $input->render($render);
             }
         }

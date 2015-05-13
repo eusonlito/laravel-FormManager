@@ -1,5 +1,4 @@
 <?php
-
 namespace Laravel\FormManager\Renders;
 
 abstract class Render
