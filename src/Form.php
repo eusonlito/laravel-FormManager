@@ -55,7 +55,7 @@ abstract class Form extends F
         $options = [];
 
         if ($empty) {
-            $options[0] = is_string($empty) ? $empty : ' ------ ';
+            $options[''] = is_string($empty) ? $empty : ' ------ ';
         }
 
         foreach ($rows as $row) {
