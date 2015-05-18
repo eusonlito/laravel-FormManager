@@ -1,5 +1,5 @@
 <?php
-namespace Laravel\FormManager;
+namespace Eusonlito\LaravelFormManager;
 
 use ReflectionClass;
 

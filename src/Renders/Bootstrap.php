@@ -1,5 +1,5 @@
 <?php
-namespace Laravel\FormManager\Renders;
+namespace Eusonlito\LaravelFormManager\Renders;
 
 class Bootstrap extends Render
 {
