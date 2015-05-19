@@ -1,6 +1,7 @@
 <?php
 namespace Eusonlito\LaravelFormManager;
 
+use Exception;
 use ReflectionClass;
 
 use Input;
@@ -62,7 +63,13 @@ abstract class Form extends F
             $options[$row->$key] = $row->$title;
         }
 
-        return $this[$input]->clear()->options($options);
+        if (is_string($input)) {
+            $input = $this[$input];
+        } elseif (!is_object($input)) {
+            throw new Exception('Input field must be an string or an object');
+        }
+
+        return $input->clear()->options($options);
     }
 
     public function token()
