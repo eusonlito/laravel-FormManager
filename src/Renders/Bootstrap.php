@@ -31,7 +31,7 @@ class Bootstrap extends Render
 
         $this->visualRequired($input);
 
-        if (!($value = $input->val())) {
+        if (!($value = $input->val()) || !is_string($value)) {
             return '<div class="form-group">'.$input.'</div>';
         }
 
