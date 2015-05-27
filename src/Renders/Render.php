@@ -54,6 +54,6 @@ abstract class Render
 
     public function label($input)
     {
-        return isset($input->label) ? $input->label : null;
+        return (isset($input->label) && strip_tags($input->label)) ? $input->label : null;
     }
 }
