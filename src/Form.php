@@ -60,7 +60,7 @@ abstract class Form extends F
         }
 
         foreach ($rows as $row) {
-            $options[$row->$key] = $row->$title;
+            $options[$row->$key] = self::setOptionTitle($row, $title);
         }
 
         if (is_string($input)) {
@@ -70,6 +70,21 @@ abstract class Form extends F
         }
 
         return $input->clear()->options($options);
+    }
+
+    private static function setOptionTitle($row, $key)
+    {
+        if (is_string($key)) {
+            return $row->$key;
+        }
+
+        $title = '';
+
+        foreach ($key as $value) {
+            $title .= ' '.$row->$value;
+        }
+
+        return trim($title);
     }
 
     public function token()
