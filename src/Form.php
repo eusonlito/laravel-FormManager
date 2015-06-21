@@ -12,7 +12,7 @@ use FormManager\Builder as B;
 use FormManager\Containers\Collection;
 use FormManager\Containers\Group;
 
-abstract class Form extends F
+class Form extends F
 {
     protected static $fake = ['fake_email', 'fake_url'];
 
