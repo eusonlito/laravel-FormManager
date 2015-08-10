@@ -1,6 +1,7 @@
 <?php
 namespace Eusonlito\LaravelFormManager;
 
+use Closure;
 use Exception;
 use ReflectionClass;
 
@@ -75,9 +76,27 @@ class Form extends F
     private static function setOptionTitle($row, $key)
     {
         if (is_string($key)) {
-            return $row->$key;
+            return self::setOptionTitleString($row, $key);
         }
 
+        if (is_array($key)) {
+            return self::setOptionTitleString($row, $key);
+        }
+
+        if (is_object($key) && ($key instanceof Closure)) {
+            return self::setOptionTitleClosure($row, $key);
+        }
+
+        throw new Exception('Option title without valid format (string, array, closure)');
+    }
+
+    private static function setOptionTitleString($row, $key)
+    {
+        return $row->$key;
+    }
+
+    private static function setOptionTitleArray($row, $key)
+    {
         $title = '';
 
         foreach ($key as $value) {
@@ -85,6 +104,11 @@ class Form extends F
         }
 
         return trim($title);
+    }
+
+    private static function setOptionTitleClosure($row, $key)
+    {
+        return $key($row);
     }
 
     public function token()
