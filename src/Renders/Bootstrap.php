@@ -21,6 +21,7 @@ class Bootstrap extends Render
         return '<div class="form-group">'
             .'<div class="checkbox-inline">'
             .'<label>'
+            .'<input type="hidden" name="'.$input->attr('name').'" value="" />'
             .$input->input.($label ?: $input->attr('placeholder'))
             .'</label></div></div>';
     }
