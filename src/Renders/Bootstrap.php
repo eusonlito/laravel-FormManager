@@ -64,9 +64,16 @@ class Bootstrap extends Render
             $value = asset('storage/resources/'.$value);
         }
 
-        return $html.'<span class="input-group-btn">'
+        $html .= '<span class="input-group-btn">'
             .'<a href="'.$value.'" target="_blank" class="btn btn-primary">'
             .'<i class="glyphicon glyphicon-eye-open"></i>'
-            .'</a></span></div>';
+            .'</a></span>';
+
+        $html .= '<label class="input-group-addon">'
+            .'<i class="glyphicon glyphicon-trash"></i>&nbsp;'
+            .'<input type="checkbox" name="_'.$input->attr('name').'_delete" value="1" />'
+            .'</label>';
+
+        return $html.'</div>';
     }
 }
