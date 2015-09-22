@@ -60,6 +60,10 @@ class Form extends F
             $options[''] = is_string($empty) ? $empty : ' ------ ';
         }
 
+        if (is_array($rows)) {
+            $rows = json_decode(json_encode($rows), false);
+        }
+
         foreach ($rows as $row) {
             $options[$row->$key] = self::setOptionTitle($row, $title);
         }
