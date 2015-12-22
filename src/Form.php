@@ -84,7 +84,7 @@ class Form extends F
         }
 
         if (is_array($key)) {
-            return self::setOptionTitleString($row, $key);
+            return self::setOptionTitleArray($row, $key);
         }
 
         if (is_object($key) && ($key instanceof Closure)) {
