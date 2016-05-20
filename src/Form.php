@@ -41,12 +41,10 @@ class Form extends F
 
     public function preload($data)
     {
-        if (is_object($data)) {
-            if (method_exists($data, 'toArray')) {
-                $data = $data->toArray();
-            } else {
-                $data = json_decode(json_encode($data), true);
-            }
+        if (is_object($data) && method_exists($data, 'toArray')) {
+            $data = $data->toArray();
+        } else {
+            $data = json_decode(json_encode($data), true);
         }
 
         return $this->load(array_merge($this->val(), $data));
