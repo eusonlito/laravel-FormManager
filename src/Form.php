@@ -19,6 +19,10 @@ class Form extends F
 
     public function setRender($render, $input = null)
     {
+        if (strpos($render, '\\') === false) {
+            $render = __NAMESPACE__.'\\Renders\\'.$render;
+        }
+
         $render = Renders\Render::get($render)->setVisualRequired(true);
 
         return $this->applyRender($input ?: $this, $render);

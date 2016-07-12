@@ -8,8 +8,6 @@ abstract class Render
 
     public static function get($render)
     {
-        $render = __NAMESPACE__.'\\'.ucfirst($render);
-
         return new $render();
     }
 
