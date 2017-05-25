@@ -42,12 +42,30 @@ abstract class Render
         }
 
         if ($this->label($input)) {
-            $input->label('<strong>'.$input->label().' *</strong>');
-        } elseif ($value = $input->attr('placeholder')) {
-            $input->attr('placeholder', $value.' *');
+            $this->visualRequiredLabel($input);
+        } else {
+            $this->visualRequiredPlaceholder($input);
         }
 
         return $this;
+    }
+
+    public function visualRequiredLabel($input)
+    {
+        $label = $input->label();
+
+        if ($label && strpos($label, ' *</strong>') === false) {
+            $input->label('<strong>'.$label.' *</strong>');
+        }
+    }
+
+    public function visualRequiredPlaceholder($input)
+    {
+        $value = $input->attr('placeholder');
+
+        if ($value && (strpos($value, ' *') === false)) {
+            $input->attr('placeholder', $value.' *');
+        }
     }
 
     public function label($input)
