@@ -5,7 +5,7 @@ use Closure;
 use Exception;
 use ReflectionClass;
 
-use Input;
+use Illuminate\Support\Facades\Request;
 
 use FormManager\Containers\Form as F;
 use FormManager\Builder as B;
@@ -154,7 +154,7 @@ class Form extends F
 
     public function referer($url = '')
     {
-        $referer = Input::get('referer') ?: ($url ?: getenv('REQUEST_URI'));
+        $referer = Request::input('referer') ?: ($url ?: getenv('REQUEST_URI'));
 
         return B::hidden()->name('referer')->value($referer);
     }
